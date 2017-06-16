@@ -40,6 +40,7 @@ public class BallController : MonoBehaviour
         {
             gameOver = true;
             rb.velocity = new Vector3(0, -10, 0);
+            Camera.main.GetComponent<CameraController>().gameOver = true;
         }
     }
 
