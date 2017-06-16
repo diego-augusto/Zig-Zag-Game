@@ -5,7 +5,7 @@ public class BallController : MonoBehaviour
 
     [SerializeField]
     private float speed;
-
+    private bool started;
     Rigidbody rb;
 
     private void Awake()
@@ -15,12 +15,21 @@ public class BallController : MonoBehaviour
 
     void Start()
     {
-        rb.velocity = new Vector3(speed, 0, 0);
+        started = false;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+
+        if (!started)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                started = true;
+                rb.velocity = new Vector3(speed, 0, 0);
+            }
+        }
+        else if (Input.GetMouseButtonDown(0))
         {
             SwitchDiretion();
         }
