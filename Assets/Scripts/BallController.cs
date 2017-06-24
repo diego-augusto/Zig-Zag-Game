@@ -3,6 +3,8 @@
 public class BallController : MonoBehaviour
 {
 
+    public GameObject particle;
+
     [SerializeField]
     private float speed;
     private bool started;
@@ -60,7 +62,9 @@ public class BallController : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Diamond"))
         {
+            GameObject p = Instantiate(particle, other.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+            Destroy(p, 1.5f);
         }
     }
 }
