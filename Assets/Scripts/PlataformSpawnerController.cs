@@ -4,6 +4,7 @@ public class PlataformSpawnerController : MonoBehaviour
 {
 
     public GameObject plataform;
+    public GameObject diamond;
     private Vector3 lastpos;
     private float plataformSize;
     public bool gameOver;
@@ -50,6 +51,13 @@ public class PlataformSpawnerController : MonoBehaviour
         Vector3 pos = lastpos;
         pos.x += plataformSize;
         Instantiate(plataform, pos, Quaternion.identity);
+        
+        int randomNumber = Random.Range(0, 10);
+        if(randomNumber < 1)
+        {
+            Instantiate(diamond, new Vector3(pos.x, pos.y + 1, pos.z), diamond.transform.rotation);
+        }
+
         lastpos = pos;
     }
 
@@ -58,6 +66,13 @@ public class PlataformSpawnerController : MonoBehaviour
         Vector3 pos = lastpos;
         pos.z += plataformSize;
         Instantiate(plataform, pos, Quaternion.identity);
+
+        int randomNumber = Random.Range(0, 10);
+        if (randomNumber < 1)
+        {
+            Instantiate(diamond, new Vector3(pos.x, pos.y + 1, pos.z), diamond.transform.rotation);
+        }
+
         lastpos = pos;
     }
 }
