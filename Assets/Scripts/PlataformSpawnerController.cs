@@ -20,7 +20,7 @@ public class PlataformSpawnerController : MonoBehaviour
             SpawnPlataform();
         }
 
-        InvokeRepeating("SpawnPlataform", 2.0f, 0.5f);
+        InvokeRepeating("SpawnPlataform", 2.0f, 0.2f);
     }
 
     void Update()
@@ -57,7 +57,7 @@ public class PlataformSpawnerController : MonoBehaviour
     {
         Vector3 pos = lastpos;
         pos.z += plataformSize;
-        plataform = Instantiate(plataform, pos, Quaternion.identity);
+        Instantiate(plataform, pos, Quaternion.identity);
         lastpos = pos;
     }
 }
