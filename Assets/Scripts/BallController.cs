@@ -39,7 +39,7 @@ public class BallController : MonoBehaviour
         if (!Physics.Raycast(transform.position, Vector3.down, 1f))
         {
             gameOver = true;
-            rb.velocity = new Vector3(0, -10, 0);
+            rb.velocity = new Vector3(0, -25, 0);
             Camera.main.GetComponent<CameraController>().gameOver = true;
         }
     }
@@ -53,6 +53,14 @@ public class BallController : MonoBehaviour
         else if (rb.velocity.x > 0)
         {
             rb.velocity = new Vector3(0, 0, speed);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Diamond"))
+        {
+            Destroy(other.gameObject);
         }
     }
 }
