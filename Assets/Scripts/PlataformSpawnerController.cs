@@ -20,13 +20,16 @@ public class PlataformSpawnerController : MonoBehaviour
         {
             SpawnPlataform();
         }
+    }
 
-        InvokeRepeating("SpawnPlataform", 2.0f, 0.2f);
+    public void SpawningPlataforms()
+    {
+        InvokeRepeating("SpawnPlataform", 0.1f, 0.2f);
     }
 
     void Update()
     {
-        if (gameOver)
+        if (GameManager.instance.gameOver)
         {
             CancelInvoke("SpawnPlataform");
         }
@@ -51,9 +54,9 @@ public class PlataformSpawnerController : MonoBehaviour
         Vector3 pos = lastpos;
         pos.x += plataformSize;
         Instantiate(plataform, pos, Quaternion.identity);
-        
+
         int randomNumber = Random.Range(0, 10);
-        if(randomNumber < 1)
+        if (randomNumber < 1)
         {
             Instantiate(diamond, new Vector3(pos.x, pos.y + 1, pos.z), diamond.transform.rotation);
         }

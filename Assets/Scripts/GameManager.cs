@@ -1,16 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+    public static GameManager instance;
+    public bool gameOver;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    private void Start()
+    {
+        gameOver = false;
+    }
+
+    public void StartGame()
+    {
+        UIManager.instance.GameStart();
+        ScoreManager.instance.StartScore();
+        GameObject.Find("PlataformSpawner").GetComponent<PlataformSpawnerController>().SpawningPlataforms();
+    }
+
+    public void GameOver()
+    {
+        UIManager.instance.GameOver();
+        ScoreManager.instance.StopScore();
+        gameOver = true;
+    }
 }
